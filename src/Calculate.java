@@ -36,8 +36,17 @@ public class Calculate {
                 System.out.println();
                 System.out.println(calc(expression));
             }
-        } catch (NullPointerException | NoSuchElementException | NumberFormatException | ArithmeticException e) {
-            System.out.println("В введенном Вами выражении ошибка");
+        } catch (NullPointerException e) {
+            System.out.println("В введенном Вами выражении ошибка (скобки не согласованы)");
+        }
+        catch ( NoSuchElementException e) {
+            System.out.println("В введенном Вами выражении ошибка (недопустимы математический знак)");
+        }
+        catch (NumberFormatException e) {
+            System.out.println("В введенном Вами выражении ошибка (присутствуют буквы)");
+        }
+        catch (ArithmeticException e) {
+            System.out.println("В введенном Вами выражении ошибка (деление на 0)");
         }
     }
 }
