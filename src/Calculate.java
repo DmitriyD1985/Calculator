@@ -1,7 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Calculate {
     public static Double calc(List<String> postfix) {
@@ -15,7 +12,11 @@ public class Calculate {
             } else if (x.equals("*")) stack.push(stack.pop() * stack.pop());
             else if (x.equals("/")) {
                 Double b = stack.pop(), a = stack.pop();
-                stack.push(a / b);
+                if (b == 0) {
+                    throw new ArithmeticException("Делить на ноль нельзя");
+                } else {
+                    stack.push(a / b);
+                }
             } else if (x.equals("u-")) stack.push(-stack.pop());
             else stack.push(Double.valueOf(x));
         }
@@ -23,14 +24,20 @@ public class Calculate {
     }
 
     public static void main(String[] args) {
+        System.out.println("Введите выраженение для вычисления. В выражении должны быть только цифры, скобки и математические знаки (+-*/^)");
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
         StringParser n = new StringParser();
-        List<String> expression = n.parse(s);
-        boolean flag = n.flag;
-        if (flag) {
-            System.out.println();
-            System.out.println(calc(expression));
+        List<String> expression = null;
+        try {
+            expression = n.parse(s);
+            boolean flag = n.flag;
+            if (flag) {
+                System.out.println();
+                System.out.println(calc(expression));
+            }
+        } catch (NullPointerException | NoSuchElementException | NumberFormatException | ArithmeticException e) {
+            System.out.println("В введенном Вами выражении ошибка");
         }
     }
 }

@@ -58,7 +58,6 @@ public class StringParser {
         while (!stack.isEmpty()) {
             if (isOperator(stack.peek())) postfix.add(stack.pop());
             else {
-                System.out.println("Скобки не согласованы.");
                 flag = false;
                 return postfix;
             }
@@ -83,7 +82,7 @@ public class StringParser {
     }
 
     private static boolean isFunction(String token) {
-        if (token.equals("sqrt") || token.equals("cube") || token.equals("pow10")) return true;
+        if (token.equals("^")) return true;
         return false;
     }
 
