@@ -44,11 +44,9 @@ public class StringParser {
                         while (!stack.isEmpty() && (priority(curr) <= priority(stack.peek()))) {
                             postfix.add(stack.pop());
                         }
-
                     }
                     stack.push(curr);
                 }
-
             } else {
                 postfix.add(curr);
             }

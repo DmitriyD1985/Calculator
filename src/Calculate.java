@@ -23,7 +23,6 @@ public class Calculate {
                 }
             } else if (x.equals("u-")) stack.push(-stack.pop());
             else stack.push(Double.valueOf(x));
-            System.out.println(stack);
         }
         return stack.pop();
     }
@@ -32,11 +31,14 @@ public class Calculate {
         StringParser n = new StringParser();
         List<String> expression = null;
         String intput = ConsoleInput.readConsole();
-        expression = n.parse(intput);
-        boolean flag = n.flag;
-        if (flag) {
-            System.out.println();
-            System.out.println(calc(expression));
+        if (intput != null) {
+            expression = n.parse(intput);
+            boolean flag = n.flag;
+            if (flag) {
+                System.out.println();
+                System.out.println(calc(expression));
+            }
         }
+        else System.out.println("Перезапустите программу!");
     }
 }

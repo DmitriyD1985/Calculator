@@ -9,18 +9,31 @@ public class ConsoleInput {
         String s = in.nextLine();
         String allowedSymbols = "0123456789()^/*+- .";
         String[] inputArr = s.split("");
-        for (String m : inputArr) {
-            if (!allowedSymbols.contains(m)) {
-                System.out.println("Вы ввели недопустимы символ, повторите ввод");
-                readConsole();
+        int counSpace=0;
+        if (!s.isEmpty()) {
+            for (String m : inputArr) {
+                if (!allowedSymbols.contains(m)) {
+                    System.out.println("Вы ввели недопустимы символ, повторите ввод");
+                    return null;
+                }
+                if(m.equals(" ")){counSpace++;}
+            }
+            if(counSpace==s.length())
+            {
+                System.out.println("Вы ввели только пробелы");
+                return null;
             }
         }
-        if (s.indexOf(')') < (s.indexOf('('))) {
+        else {
+            System.out.println("Вы ничего не ввели");
+            return null;
+        }
+         if (s.indexOf(')') < (s.indexOf('('))) {
             System.out.println("Вы ввели выражение с неверным порядком скобок, повторите ввод");
-            readConsole();
+            return null;
         } else if (s.contains("()")) {
             System.out.println("Вы ввели пустые скобки, повторите ввод");
-            readConsole();
+            return null;
         }
         in.close();
         return s;
