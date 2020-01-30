@@ -10,13 +10,22 @@ public class ConsoleInput {
         String allowedSymbols = "0123456789()^/*+- .";
         String[] inputArr = s.split("");
         int counSpace=0;
+        int openbracket = 0;
+        int closebracket = 0;
         if (!s.isEmpty()) {
             for (String m : inputArr) {
+                if(m.equalsIgnoreCase("(")) openbracket++;
+                if(m.equalsIgnoreCase(")")) closebracket++;
                 if (!allowedSymbols.contains(m)) {
                     System.out.println("Вы ввели недопустимы символ, повторите ввод");
                     return null;
                 }
                 if(m.equals(" ")){counSpace++;}
+            }
+            if(openbracket!=closebracket)
+            {
+                System.out.println("Cкобки не согласованы");
+                return null;
             }
             if(counSpace==s.length())
             {

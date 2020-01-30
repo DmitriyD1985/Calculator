@@ -26,11 +26,11 @@ public class StringParser {
                 else if (curr.equals(")")) {
                     while (!stack.peek().equals("(")) {
                         postfix.add(stack.pop());
-                        if (stack.isEmpty()) {
-                            System.out.println("Скобки не согласованы.");
-                            flag = false;
-                            return postfix;
-                        }
+//                        if (stack.isEmpty()) {
+//                            System.out.println("Скобки не согласованы.");
+//                            flag = false;
+//                            return postfix;
+//                        }
                     }
                     stack.pop();
                     if (!stack.isEmpty() && isFunction(stack.peek())) {
