@@ -38,10 +38,10 @@ public class ConsoleInput {
             return null;
         }
          if (s.indexOf(')') < (s.indexOf('('))) {
-            System.out.println("Вы ввели выражение с неверным порядком скобок, повторите ввод");
+            System.out.println("Вы ввели выражение с неверным порядком скобок, повторите ввод-1");
             return null;
         } else if (s.contains("()")) {
-            System.out.println("Вы ввели пустые скобки, повторите ввод");
+            System.out.println("Вы ввели пустые скобки, повторите ввод-2");
             return null;
         }
         in.close();
