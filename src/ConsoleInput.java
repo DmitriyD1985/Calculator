@@ -63,6 +63,7 @@ public class ConsoleInput {
             String totalString;
             char [] arr = bracketString.toCharArray();
             for (int i = 0; i < bracketCount; i++) {
+                // не очень удачный способ, так как строка imutable, но другого найти пока не могу
                 bracketString = bracketString.replaceAll("\\(\\)", "");
             }
             return bracketString.isEmpty();
