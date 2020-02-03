@@ -9,7 +9,7 @@ public class ConsoleInput {
         String s = in.nextLine();
         String allowedSymbols = "0123456789()^/*+- .";
         String[] inputArr = s.split("");
-        int counSpace=0;
+        int countSpace=0;
         int openbracket = 0;
         int closebracket = 0;
         if (!s.isEmpty()) {
@@ -20,14 +20,14 @@ public class ConsoleInput {
                     System.out.println("Вы ввели недопустимы символ, повторите ввод");
                     return null;
                 }
-                if(m.equals(" ")){counSpace++;}
+                if(m.equals(" ")){countSpace++;}
             }
             if(openbracket!=closebracket)
             {
                 System.out.println("Cкобки не согласованы");
                 return null;
             }
-            if(counSpace==s.length())
+            if(countSpace==s.length())
             {
                 System.out.println("Вы ввели только пробелы");
                 return null;
