@@ -9,42 +9,64 @@ public class ConsoleInput {
         String s = in.nextLine();
         String allowedSymbols = "0123456789()^/*+- .";
         String[] inputArr = s.split("");
-        int countSpace=0;
-        int openbracket = 0;
-        int closebracket = 0;
+        int countSpace = 0;
         if (!s.isEmpty()) {
             for (String m : inputArr) {
-                if(m.equalsIgnoreCase("(")) openbracket++;
-                if(m.equalsIgnoreCase(")")) closebracket++;
                 if (!allowedSymbols.contains(m)) {
                     System.out.println("Вы ввели недопустимы символ, повторите ввод");
                     return null;
                 }
-                if(m.equals(" ")){countSpace++;}
+                if (m.equals(" ")) {
+                    countSpace++;
+                }
             }
-            if(openbracket!=closebracket)
-            {
+
+            if (!bracketChekcer(s)) {
                 System.out.println("Cкобки не согласованы");
                 return null;
             }
-            if(countSpace==s.length())
-            {
+            if (countSpace == s.length()) {
                 System.out.println("Вы ввели только пробелы");
                 return null;
             }
-        }
-        else {
+        } else {
             System.out.println("Вы ничего не ввели");
             return null;
         }
-         if (s.indexOf(')') < (s.indexOf('('))) {
-            System.out.println("Вы ввели выражение с неверным порядком скобок, повторите ввод");
-            return null;
-        } else if (s.contains("()")) {
+//         if (s.indexOf(')') < (s.indexOf('('))) {
+//            System.out.println("Вы ввели выражение с неверным порядком скобок, повторите ввод");
+//            return null;
+//        } else
+        if (s.contains("()")) {
             System.out.println("Вы ввели пустые скобки, повторите ввод");
             return null;
         }
         in.close();
         return s;
     }
+
+    public static boolean bracketChekcer(String input) {
+        StringBuilder sb = new StringBuilder();
+        String[] arrFromInput = input.split("");
+        for (String s : arrFromInput) {
+            if (s.equalsIgnoreCase(")") || s.equalsIgnoreCase("(")) {
+                sb.append(s);
+            }
+        }
+        String bracketString = sb.toString();
+        int bracketCount = bracketString.length() / 2;
+        if (bracketCount == 0) {
+            return true;
+        } else if (bracketString.length() % 2 != 0) {
+            return false;
+        } else {
+            String totalString;
+            char [] arr = bracketString.toCharArray();
+            for (int i = 0; i < bracketCount; i++) {
+                bracketString = bracketString.replaceAll("\\(\\)", "");
+            }
+            return bracketString.isEmpty();
+        }
+    }
 }
+
