@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ConsoleInput {
     public static String readConsole() {
@@ -33,10 +31,7 @@ public class ConsoleInput {
             System.out.println("Вы ничего не ввели");
             return null;
         }
-//         if (s.indexOf(')') < (s.indexOf('('))) {
-//            System.out.println("Вы ввели выражение с неверным порядком скобок, повторите ввод");
-//            return null;
-//        } else
+
         if (s.contains("()")) {
             System.out.println("Вы ввели пустые скобки, повторите ввод");
             return null;
@@ -61,7 +56,7 @@ public class ConsoleInput {
             return false;
         } else {
             String totalString;
-            char [] arr = bracketString.toCharArray();
+            char[] arr = bracketString.toCharArray();
             for (int i = 0; i < bracketCount; i++) {
                 // не очень удачный способ, так как строка imutable, но другого найти пока не могу
                 bracketString = bracketString.replaceAll("\\(\\)", "");
